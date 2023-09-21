@@ -1,3 +1,3 @@
 # wifi_login
 
-```npm i```
+<code>npm i</code>
