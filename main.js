@@ -1,17 +1,11 @@
 const { app, BrowserWindow ,ipcMain } = require('electron');
 const path = require('path');
-// const cron = require('node-cron');
-const schedule = require('node-schedule');
 const runScript = require('./theLogic.js');
-
-
-app.commandLine.appendSwitch('ignore-certificate-errors', 'true'); // Ignore certificate errors (not recommended for production)
-app.commandLine.appendSwitch('allow-insecure-localhost', 'true'); // Allow self-signed certificates on localhost
-
 let mainWindow;
 
 app.on('ready', () => {
 
+  
   // const screenWidth = Math.floor(0.4 * screen.availWidth); 
   // const screenHeight = Math.floor(0.5 * screen.availHeight); 
 
@@ -33,12 +27,7 @@ app.on('ready', () => {
      username = userInput.rollNO;
      password = userInput.passkey;
   });
-
-
     runScript(username, password);
-  
-
-
 });
 
 app.on('window-all-closed', () => {
