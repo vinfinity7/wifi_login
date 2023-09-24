@@ -307,7 +307,7 @@ function runScript(arg1, arg2) {
 
 
   let doAuthentication = async () => {
-    await logout();
+  //  await logout();
     let login_page = await get_login_page();
     let i_do_the_magic = await get_magic(login_page);
     let login_urls = await do_login(i_do_the_magic, rollno, pass_ik, firewall_url);
