@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
-  <title>Taking Input</title>
+  <title>Login App</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
 </head>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
-
 <body>
-
   <div id="wrapper">
     <div class="main-content">
       <div class="header">
-        <img src="iitbhulogo.png"  />
+        <img src="iitbhulogo.png" />
         <br/>
       </div>
       <div class="l-part">
@@ -21,15 +18,26 @@
         <br/>
         <input type="password" placeholder="Password" class="input-2" id="passy"/>
         <br/>
-        
-        <input type="button" value="Log in" class="btn" id="submission"/>
+        <button id="submission" class="btn">Log In</button>
         <br/>
       </div>
     </div>
-
   </div>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const submitButton = document.getElementById('submission');
+      const usernameInput = document.getElementById('roolno');
+      const passwordInput = document.getElementById('passy');
 
-  <script src="renderer.js"></script>
+      submitButton.addEventListener('click', () => {
+        const userInput = {
+          rollNO: usernameInput.value,
+          passkey: passwordInput.value
+        };
+
+        window.electron.sendUserInput(userInput);
+      });
+    });
+  </script>
 </body>
-
 </html>
