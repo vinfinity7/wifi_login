@@ -32,10 +32,6 @@ This command will start the Electron application, and the main window of the app
 
 3. **User Interface**: Although not explicitly mentioned, the application likely provides a user interface for users to input their credentials and initiate the login process. This interface may include input fields for username and password, as well as a button to trigger the login process.
 
-## **Incomplete Logic:**
-
-While the project has been outlined and partially implemented, there may be some areas where attention to detail in the logic part is lacking. This could include error handling, edge cases, and ensuring the robustness of the application under various scenarios such as network connectivity issues or incorrect user inputs.
-
 ## **Conclusion:**
 
 The IIT BHU WiFi Login Electron Application is a work-in-progress project aimed at automating the login process for the WiFi network at IIT BHU. By leveraging Electron.js and Axios, the application simplifies the process for users, eliminating the need for manual intervention during the authentication process. With further refinement and attention to detail in the logic part, the application has the potential to offer a seamless and reliable solution for accessing the college WiFi network.
