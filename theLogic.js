@@ -4,15 +4,12 @@ const schedule = require('node-schedule');
 const axios = require('axios');
 const https = require('https');
 
-const GENERATE_204_URL = "https://gstatic.com/generate_204";
-const FIREWALL_URL = "http://192.168.249.1:1000";
 let credentials = {
     username: "",
     password: "",
     loginTime: 0
 };
 
-// Function to check if the network is the intended WiFi network
 async function isIntendedWiFiNetwork() {
     try {
         let response = await axios.get(`${FIREWALL_URL}/login?logiccccc`);
@@ -23,7 +20,6 @@ async function isIntendedWiFiNetwork() {
     }
 }
 
-// Function to sign in if required
 async function signInIfRequired() {
     let isIntendedNetwork = await isIntendedWiFiNetwork();
     if (isIntendedNetwork) {
@@ -41,7 +37,6 @@ async function signInIfRequired() {
     }
 }
 
-// Function to perform the sign-in process
 async function signIn() {
     if (credentials.password.length === 0) {
         console.log("Credentials not set");
@@ -59,7 +54,6 @@ async function signIn() {
     }
 }
 
-// Function to get the login page URL
 async function getLoginPage() {
     try {
         let response = await axios.get(`${FIREWALL_URL}/logout`);
@@ -74,7 +68,6 @@ async function getLoginPage() {
     }
 }
 
-// Function to get the magic value from the login page
 async function getMagic(loginPage) {
     try {
         let response = await axios.get(loginPage);
@@ -89,7 +82,6 @@ async function getMagic(loginPage) {
     }
 }
 
-// Function to perform the login action
 async function doLogin(magic, username, password) {
     try {
         let requestBody = `username=${username}&password=${password}&magic=${magic}&submit=Continue`;
@@ -108,7 +100,6 @@ async function doLogin(magic, username, password) {
     }
 }
 
-// Function to keep the session alive
 async function keepAlive(url) {
     console.log("Keepalive URL is", url);
     const delay = 10000;
@@ -133,23 +124,19 @@ async function keepAlive(url) {
     attemptKeepAlive();
 }
 
-// Function to update the login time
 function updateLoginTime(time) {
     credentials.loginTime = time;
     console.log("Login time updated to:", time);
 }
 
-// Main authentication function
 async function doAuthentication() {
     await signInIfRequired();
 }
 
-// Function to run the script with provided credentials
 function runScript(username, password) {
     credentials.username = username;
     credentials.password = password;
 
-    // Schedule the authentication function to run every minute
     const minuteRule = new schedule.RecurrenceRule();
     minuteRule.second = 0;
     const job = schedule.scheduleJob(minuteRule, doAuthentication);
